@@ -1,0 +1,347 @@
+<section class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">Registration Form</h2>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
+              <!-- Row 1: First Name and Last Name -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First Name"
+                    formControlName="firstname"
+                  />
+                  <small
+      *ngIf="reactiveForm.get('firstname')?.errors?.['required'] && reactiveForm.get('firstname')?.touched"
+      class="text-danger fw-bold"
+    >
+      *First Name is required.
+    </small>
+                  <small
+    *ngIf="reactiveForm.get('firstname')?.errors?.['minlength'] && reactiveForm.get('firstname')?.touched"
+    class="text-danger fw-bold"
+  >
+    *First Name must be at least 3 characters.
+  </small>
+  <small
+    *ngIf="reactiveForm.get('firstname')?.errors?.['maxlength'] && reactiveForm.get('firstname')?.touched"
+    class="text-danger fw-bold"
+  >
+    *First Name cannot exceed 20 characters.
+  </small>
+
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last Name"
+                    formControlName="lastname"
+                  />
+                  <small
+                  *ngIf="reactiveForm.get('lastname')?.errors?.['required'] && reactiveForm.get('lastname')?.touched"
+                  class="text-danger fw-bold"
+                >
+                  *last Name is required.
+                </small>
+                  <small
+    *ngIf="reactiveForm.get('lastname')?.errors?.['minlength'] && reactiveForm.get('lastname')?.touched"
+    class="text-danger fw-bold"
+  >
+    *Last Name must be at least 3 characters.
+  </small>
+  <small
+    *ngIf="reactiveForm.get('lastname')?.errors?.['maxlength'] && reactiveForm.get('lastname')?.touched"
+    class="text-danger fw-bold"
+  >
+    *Last Name cannot exceed 20 characters.
+  </small>
+                </div>
+                
+              </div>
+  
+              <!-- Email -->
+              <div class="mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <small
+    *ngIf="reactiveForm.get('email')?.errors?.['required'] && reactiveForm.get('email')?.touched"
+    class="text-danger fw-bold"
+  >
+    *Email is required.
+  </small>
+
+                <small
+                *ngIf="reactiveForm.get('email')?.errors?.['email'] && reactiveForm.get('email')?.touched"
+                class="text-danger fw-bold"
+              >
+                *Please enter a valid email address.
+              </small>
+              </div>
+  
+              <!-- Row 2: Username and Date of Birth -->
+              <div class="row mb-3">
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Username"
+                        formControlName="username"
+                      />
+                      <small
+                        *ngIf="reactiveForm.get('username')?.errors?.['required'] && reactiveForm.get('username')?.touched"
+                        class="text-danger fw-bold"
+                      >
+                        *Username is required.
+                      </small>
+                      <small
+                        *ngIf="reactiveForm.get('username')?.errors?.['minlength'] && reactiveForm.get('username')?.touched"
+                        class="text-danger fw-bold"
+                      >
+                        *Username must be at least 4 characters.
+                      </small>
+                      <small
+                        *ngIf="reactiveForm.get('username')?.errors?.['maxlength'] && reactiveForm.get('username')?.touched"
+                        class="text-danger fw-bold"
+                      >
+                        *Username cannot exceed 15 characters.
+                      </small>
+                      <small
+                        *ngIf="reactiveForm.get('username')?.errors?.['pattern'] && reactiveForm.get('username')?.touched"
+                        class="text-danger fw-bold"
+                      >
+                        *Username must contain only letters and numbers.
+                      </small>
+                    </div>
+                    
+                    
+                  </div>
+                
+                
+                  <div class="col-md-4">
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      formControlName="password"
+                    />
+                    <small
+                      *ngIf="reactiveForm.get('password')?.errors?.['required'] && reactiveForm.get('password')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Password is required.
+                    </small>
+                    <small
+                      *ngIf="reactiveForm.get('password')?.errors?.['minlength'] && reactiveForm.get('password')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Password must be at least 8 characters.
+                    </small>
+                    <small
+                      *ngIf="reactiveForm.get('password')?.errors?.['maxlength'] && reactiveForm.get('password')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Password cannot exceed 20 characters.
+                    </small>
+                    <small
+                      *ngIf="reactiveForm.get('password')?.errors?.['pattern'] && reactiveForm.get('password')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Password must contain at least one uppercase letter, one lowercase letter,
+                      one digit, and one special character.
+                    </small>
+                  </div>
+                  
+              </div>
+             
+  
+              <!-- Gender -->
+              <div class="mb-3">
+                <h4>Gender</h4>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="check-male"
+                    class="form-check-input"
+                    value="male"
+                    formControlName="gender"
+                  />
+                  <label for="check-male" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="check-female"
+                    class="form-check-input"
+                    value="female"
+                    formControlName="gender"
+                  />
+                  <label for="check-female" class="form-check-label">Female</label>
+                </div>
+                
+              </div>
+  
+              <!-- Address -->
+              <div class="mb-3" formGroupName="address">
+                <label class="form-label">Address</label>
+                <div>
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  placeholder="Street Address"
+                  formControlName="street"
+                />
+                <small *ngIf="reactiveForm.get('address.street').invalid && reactiveForm.get('address.street').touched" class="text-danger fw-bold">*Street Address is required.</small>
+            </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <select class="form-select" formControlName="country">
+                      <option hidden>Country</option>
+                      <option>America</option>
+                      <option>Japan</option>
+                      <option>India</option>
+                      <option>Nepal</option>
+                    </select>
+                    <small *ngIf="reactiveForm.get('address.country').invalid && reactiveForm.get('address.country').touched" class="text-danger fw-bold">*Country is required.</small>
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="City"
+                      formControlName="city"
+                    />
+                    <small *ngIf="reactiveForm.get('address.city').invalid && reactiveForm.get('address.city').touched" class="text-danger fw-bold">*City is required.</small>
+                  </div>
+                </div>
+                <div class="row">
+                  
+                  <div class="col-md-6">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Postal Code"
+                      formControlName="postal"
+                    />
+                    <small
+                      *ngIf="reactiveForm.get('address.postal')?.errors?.['required'] && reactiveForm.get('address.postal')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Postal Code is required.
+                    </small>
+                    <small
+                      *ngIf="reactiveForm.get('address.postal')?.errors?.['minlength'] && reactiveForm.get('address.postal')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Postal Code must be at least 5 digits.
+                    </small>
+                    <small
+                      *ngIf="reactiveForm.get('address.postal')?.errors?.['maxlength'] && reactiveForm.get('address.postal')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Postal Code cannot exceed 6 digits.
+                    </small>
+                    <small
+                      *ngIf="reactiveForm.get('address.postal')?.errors?.['pattern'] && reactiveForm.get('address.postal')?.touched"
+                      class="text-danger fw-bold"
+                    >
+                      *Postal Code must contain only numbers.
+                    </small>
+                  </div>
+                  
+                </div>
+              </div>
+  
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary px-5"
+                  [disabled]="!reactiveForm.valid"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="container mt-5" *ngIf="submittedData">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white text-center">
+          <h3 class="mb-0">Submitted Data</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>First Name</td>
+                <td>{{ submittedData.firstname }}</td>
+              </tr>
+              <tr>
+                <td>Last Name</td>
+                <td>{{ submittedData.lastname }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{ submittedData.email }}</td>
+              </tr>
+              <tr>
+                <td>Username</td>
+                <td>{{ submittedData.username }}</td>
+              </tr>
+              <tr>
+                <td>Password</td>
+                <td>*******</td> 
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td>{{ submittedData.gender }}</td>
+              </tr>
+              <tr>
+                <td>Street Address</td>
+                <td>{{ submittedData.address.street }}</td>
+              </tr>
+              <tr>
+                <td>Country</td>
+                <td>{{ submittedData.address.country }}</td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td>{{ submittedData.address.city }}</td>
+              </tr>
+              <tr>
+                <td>Postal Code</td>
+                <td>{{ submittedData.address.postal }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
