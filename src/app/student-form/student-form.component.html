@@ -280,7 +280,36 @@
   </section>
 
 
-<section class="container mt-5" *ngIf="submittedData">
+  <section class="container mt-5" *ngIf="submittedData">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card shadow">
+          <div class="card-header bg-success text-white text-center">
+            <h3 class="mb-0">Submitted Data</h3>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped">
+              <thead class="bg-primary text-white">
+                <tr>
+                  <th *ngFor="let field of fields">{{ field.displayName }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td *ngFor="let field of fields">{{ field.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+
+
+<!--<section class="container mt-5" *ngIf="submittedData">
   <div class="row justify-content-center">
     <div class="col-md-10">
       <div class="card shadow">
@@ -343,5 +372,5 @@
     </div>
   </div>
 </section>
+-->
 
-  

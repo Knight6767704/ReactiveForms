@@ -1,16 +1,17 @@
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-student-form',
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule,NgIf, NgFor],
   templateUrl: './student-form.component.html',
   styleUrl: './student-form.component.css'
 })
 export class StudentFormComponent {
   reactiveForm: FormGroup ;
   submittedData: any = null;
+  fields: { displayName: string; value: any }[] = [];
 
   ngOnInit(){
     this.reactiveForm=new FormGroup({
@@ -49,7 +50,18 @@ export class StudentFormComponent {
   OnFormSubmitted(){
     if (this.reactiveForm.valid) {
       this.submittedData = this.reactiveForm.value;
-      console.log(this.submittedData);
+      this.fields = [
+        { displayName: 'First Name', value: this.submittedData.firstname },
+        { displayName: 'Last Name', value: this.submittedData.lastname },
+        { displayName: 'Email', value: this.submittedData.email },
+        { displayName: 'Username', value: this.submittedData.username },
+        { displayName: 'Password', value: '*******' }, 
+        { displayName: 'Gender', value: this.submittedData.gender },
+        { displayName: 'Street Address', value: this.submittedData.address.street },
+        { displayName: 'Country', value: this.submittedData.address.country },
+        { displayName: 'City', value: this.submittedData.address.city },
+        { displayName: 'Postal Code', value: this.submittedData.address.postal }
+      ];
     }
     
   }
